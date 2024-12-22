@@ -3,7 +3,7 @@ using E_Commerce_MVC.Models;
 
 namespace E_Commerce_MVC.Data.Services
 {
-    public interface IActorsService : IEntityBaseRepository<Actor>
+    public interface IProducersService : IEntityBaseRepository<Producer>
     {
     }
 }
