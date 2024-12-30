@@ -1,4 +1,5 @@
 using E_Commerce_MVC.Data;
+using E_Commerce_MVC.Data.Cart;
 using E_Commerce_MVC.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,11 @@ builder.Services.AddScoped<IProducersService, ProducersService>();
 builder.Services.AddScoped<ICinemasService, CinemasService>();
 builder.Services.AddScoped<IMoviesService, MoviesService>();
 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+builder.Services.AddSession();
+
+
 var app = builder.Build();
 
 // Seed the database
@@ -34,6 +40,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 
